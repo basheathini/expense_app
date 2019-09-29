@@ -100,11 +100,10 @@ class _MyHomePageState extends State<MyHomePage>{
       ],
     );
 
-    final pageBody = SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+    final pageBody = SafeArea(child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
           Container(
             height: (mediaQuery.size.height - appBar.preferredSize.height - mediaQuery.padding.top) * 0.3,
             child: Chart(_recentTransactions), ),
