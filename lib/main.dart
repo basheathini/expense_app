@@ -38,7 +38,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
   
-class _MyHomePageState extends State<MyHomePage>{
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
@@ -124,5 +124,17 @@ class _MyHomePageState extends State<MyHomePage>{
           onPressed: () => _startAddNewTransaction(context),
       ),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state){
+    print(state);
+
+  }
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+
   }
 }

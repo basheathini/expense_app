@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
+import '../widgets/adaptive_flat_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addNewTransaction;
   NewTransaction(this.addNewTransaction);
@@ -14,19 +16,26 @@ class _NewTransactionState extends State<NewTransaction>{
   DateTime _selectedDate;
 
   void _submitData(){
-    if(_titleController.text.isEmpty){
-      return;
-    }
-    final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
+//    if(_titleController.text.isEmpty){
+//      return;
+//    }
+//    final enteredTitle = _titleController.text;
+//    final enteredAmount = double.parse(_amountController.text);
+  for(int i = 0; i <= 3000; i++){
+    final enteredTitle = "Nike Shoes " + i.toString();
+    final enteredAmount = 2058.00;
+    _selectedDate = DateTime.now();
     if(enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null){
       return;
     }
     widget.addNewTransaction(
-      enteredTitle,
-      enteredAmount,
-      _selectedDate
+        enteredTitle,
+        enteredAmount,
+        _selectedDate
     );
+  }
+
+
     Navigator.of(context).pop();
 //                  print(titleController.text);
 //                  print(amountController.text);
@@ -81,10 +90,7 @@ class _NewTransactionState extends State<NewTransaction>{
                       Expanded(
                         child: Text(_selectedDate == null ? 'No Date Chosen': 'Picked Date: ${DateFormat.yMMMMd().format(_selectedDate)}'),
                       ),
-                      FlatButton(
-                        child: Text('Choose Date'),
-                        onPressed: _presentDatePicker,
-                        textColor: Theme.of(context).primaryColor,)
+                      AdaptiveFlatButton('Choose Date', _presentDatePicker),
                     ],
                   ),
                 ),
